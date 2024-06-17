@@ -1,0 +1,39 @@
+[
+    {
+      "name": "Promotion",
+      "price": "47,043",
+      "detail": "Jakarta Garden City ",
+      "image": "/image41.svg"
+    },
+    {
+      "name": "Asatti Garden City",
+      "price": "66,353",
+      "detail": "Pahlawan Street ",
+      "image": "/image42.svg"
+    },
+    {
+      "name": "Citralan Puri Serang",
+      "price": "35,853",
+      "detail": "Ruko Puri ",
+      "image": "/image41.svg"
+    },
+    {
+      "name": "Aliva Priva Jardin",
+      "price": "47,043",
+      "detail": "Jakarta a",
+      "image": "/image42.svg"
+    },
+    {
+      "name": "Asatti Garden City",
+      "price": "66,353",
+      "detail": "Pahlawan Street XVII No.215",
+      "image": "/image41.svg"
+    },
+    {
+      "name": "Citralan Puri Serang",
+      "price": "35,853",
+      "detail": "Ruko ",
+      "image": "/image42.svg"
+    }
+  ]
+  
