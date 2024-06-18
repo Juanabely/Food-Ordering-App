@@ -7,7 +7,7 @@ import { AuthContext } from '@/lib/context/AuthProvider';
 import Header from './Header';
 
 const MyCart = () => {
-  const {isAuthicanted} = useContext(AuthContext)
+  const {isAuthicanted,cartItems,setCartItems} = useContext(AuthContext)
 const navigate = useNavigate()
 
   useEffect(() => {
@@ -25,6 +25,7 @@ const navigate = useNavigate()
     <div className="cards mt-3 overflow-auto">
       <CartCard/>
     </div>
+    <button onClick={setCartItems([])}>clear</button>
     </section>
     
   )

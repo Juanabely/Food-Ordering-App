@@ -5,7 +5,7 @@ import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { RiHomeSmile2Fill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = ({cartItems}) => {
   const ref = useRef( )
   return (
     <section className=' nav flex items-center justify-center content-center max-w-[350px] mx-auto '>
@@ -23,7 +23,10 @@ const Nav = () => {
         </div>
         <div className='absolute flex flex-1 bottom-9 gap-7 right-5 '>
           
-          <Link to={'/mycart'}><FaShoppingBag color='white' size={35} className='hover:brightness-75' /></Link>
+          <Link to={'/mycart'}><FaShoppingBag color='white' size={35} className='hover:brightness-75 relative' />
+          <div className={`bg-white h-[15px] w-[15px] rounded-[50%] absolute top-0 right-[55px] ${cartItems ? 'bg-white' : 'hidden'}`}>{cartItems.length}</div>
+          </Link>
+
           <Link to={'/profile'}><FaUser color='white' size={35} className='hover:brightness-75' /></Link>
             
             

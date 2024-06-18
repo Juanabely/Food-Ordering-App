@@ -7,7 +7,7 @@ import { sliderSettings } from '@/lib/common'
 import { AiFillCaretLeft ,AiFillCaretRight} from "react-icons/ai";
 import { AuthContext } from '@/lib/context/AuthProvider'
 
-function CardSlider({searchQuery}) {
+function CardSlider({searchQuery,setCartItems}) {
    
     console.log(searchQuery)
     
@@ -17,14 +17,17 @@ function CardSlider({searchQuery}) {
             item.name.toLowerCase().includes(searchQueryLowerCase)
         )
     })
+    const addCartItem = (card) => {
+        setCartItems(prev=>[...prev,card]);
+    }
   return (
 
     <div className="paddings innerWidth r-container no-scrollbar">
         <Swiper {...sliderSettings}>
             <SliderButonns/>
             {
-                filteredItems.map((card,i)=>(
-                    <SwiperSlide key={i}>
+                filteredItems.map((card)=>(
+                    <SwiperSlide key={card.id}>
                       <div className="flexColStart content-center r-card bg-[#A9411D] w-[11rem] h-[12rem] ">
                         <img src={card.image} alt="home" className='absolute top-[-15%] right-[14px] w-[70%] h-[70%] z-20 md:right-[37%]'/>
                         <br />
@@ -40,7 +43,7 @@ function CardSlider({searchQuery}) {
                             }}> <br /> $</span>
                             <span className='text-[15px] text-white font-semibold'>{card.price}</span>
                         </span>
-                        <img src="/Buy.svg" alt="Buy"  className='absolute w-[50px] h-[50px] right-[15px] md:right-[36%]'/>
+                        <img src="/Buy.svg" alt="Buy"  className='absolute w-[50px] h-[50px] right-[15px] md:right-[36%]' onClick={() => addCartItem(card)}/>
                         </div>  
                     </SwiperSlide>
                 ))

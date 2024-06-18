@@ -19,7 +19,7 @@ const onSearch = (value, _e, info) => console.log(info?.source, value);
 
 const Home = () => {
 
-const {isAuthicanted,activeUser,searchQuery,setSearchQuery} = useContext(AuthContext)
+const {isAuthicanted,activeUser,searchQuery,setSearchQuery,setCartItems,cartItems} = useContext(AuthContext)
 console.log(isAuthicanted)
 const navigate = useNavigate()
 console.log(activeUser)
@@ -98,6 +98,7 @@ const email = activeUser.email
         <div className='cards h-[full]'>
           <CardSlider 
           searchQuery={searchQuery}
+          setCartItems={setCartItems}
           />
         </div>
     </div>
@@ -110,13 +111,16 @@ const email = activeUser.email
         <div className='cards'>
           <CardSlider
           searchQuery={searchQuery}
+          setCartItems={setCartItems}
           />
         </div>
       </div>
 </div>
 
       
-<Nav/>
+<Nav
+cartItems={cartItems}
+/>
       
     </section>
     </> : <Navigate to={'/login'} replace/>
