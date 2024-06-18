@@ -20,8 +20,10 @@ const navigate = useNavigate()
       text={'My cart'}
       />
 
-    <div className="cards mt-3 overflow-auto">
-      <CartCard/>
+    <div className="cards mt-3 overflow-auto w-full h-[80%]">
+      <CartCard
+      cartItems={cartItems}
+      />
     </div>
     <button onClick={()=>{setCartItems([])}}>clear</button>
     </section>
