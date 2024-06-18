@@ -9,8 +9,8 @@ const Nav = () => {
   const ref = useRef( )
   return (
     <section className=' nav flex items-center justify-center content-center max-w-[350px] mx-auto '>
-      <div className='absolute z-20 justify-center items-center max-w-[375px] bottom-[-33px]'>
-        <img src="/NavVector.svg" alt="Vector" cl />
+      <div className='absolute z-50 justify-center items-center max-w-[375px] bottom-[-33px]'>
+        <img src="/NavVector.svg" alt="Vector" className='bottom-0' />
         <div className='absolute flex flex-1 bottom-9 gap-7 left-5'>
             <RiHomeSmile2Fill  color='white' size={35}className='hover:brightness-75' />
             <Link to={'/reachOut'}><IoChatbubbleEllipsesSharp color='white' size={35} className='hover:brightness-75' /></Link>

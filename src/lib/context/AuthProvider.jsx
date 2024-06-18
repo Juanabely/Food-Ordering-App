@@ -10,9 +10,11 @@ export const AuthProvider = ({ children }) => {
 
 
 const [isAuthicanted, setIsAuthicanted] = useState(false);
+const [searchQuery,setSearchQuery]=useState('')
 const [activeUser,setActiveUser] = useState({})
 
 console.log(isAuthicanted)
+console.log(searchQuery)
 
 return (
     <AuthContext.Provider value={
@@ -20,7 +22,9 @@ return (
             isAuthicanted,
             setIsAuthicanted,
             activeUser,
-            setActiveUser
+            setActiveUser,
+            setSearchQuery,
+            searchQuery,
         }
     }>
        {children}

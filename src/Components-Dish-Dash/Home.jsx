@@ -5,7 +5,7 @@ import { LuSettings2 } from "react-icons/lu";
 import CardSlider from './CardSlider';
 import Nav from './Nav';
 import { AuthContext } from '@/lib/context/AuthProvider';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 const { Search } = Input;
 const suffix = (
   <AudioOutlined
@@ -19,7 +19,7 @@ const onSearch = (value, _e, info) => console.log(info?.source, value);
 
 const Home = () => {
 
-const {isAuthicanted,activeUser} = useContext(AuthContext)
+const {isAuthicanted,activeUser,searchQuery,setSearchQuery} = useContext(AuthContext)
 console.log(isAuthicanted)
 const navigate = useNavigate()
 console.log(activeUser)
@@ -38,11 +38,11 @@ const email = activeUser.email
       <div className="header flex gap-4 mt-2 items-center w-full justify-between h-[10%]">
         <div className='bg-slate-100 relative text-center rounded-full w-[50px] h-[50px]'>
           <span className='font-bold text-4xl  absolute left-3 top-1'>{
-            email.charAt(0).toUpperCase()
+            email.charAt(0).toUpperCase() 
             }</span>
           </div>
           <div>
-          <p className='font-sans text-[20px] font-semibold'>Hello,{activeUser.username}</p>
+          <p className='font-sans text-[20px] font-semibold'>Hello,{activeUser.username }</p>
           <p className='font-normal text-[9px]'>Kenya,{activeUser.location}</p>
          </div>
          <div className='relative ml-[7rem]'>
@@ -71,6 +71,8 @@ const email = activeUser.email
                   <Search
               
                   placeholder="Find what you want..."
+                  value={searchQuery}
+                  onChange={(e)=>setSearchQuery(e.target.value)}
                   allowClear
                   onSearch={onSearch}
                   size='large'
@@ -91,20 +93,24 @@ const email = activeUser.email
       <div className="cards-pop-container no-scrollbar">
         <div className="words flex justify-between items-center">
           <p className='font-semibold text-[20px]'>Popular items...</p>
-          <p className='text-[13px]'>See more</p>
+          <p className='text-[13px]'><Link to={'/shopping'} className='hover:text-yellow-600'>See more</Link></p>
         </div>
         <div className='cards h-[full]'>
-          <CardSlider/>
+          <CardSlider 
+          searchQuery={searchQuery}
+          />
         </div>
     </div>
 
     <div className="cards-rec-container h-full " >
         <div className="words flex justify-between items-center">
           <p className='font-semibold text-[20px]'>Recommended items...</p>
-          <p className='text-[13px]'>See more</p>
+          <p className='text-[13px]'><Link to={'/shopping'} className='hover:text-yellow-600'>See more</Link></p>
         </div>
         <div className='cards'>
-          <CardSlider/>
+          <CardSlider
+          searchQuery={searchQuery}
+          />
         </div>
       </div>
 </div>

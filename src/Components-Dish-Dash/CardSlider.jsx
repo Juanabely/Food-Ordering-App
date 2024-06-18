@@ -1,19 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {Swiper,SwiperSlide, useSwiper} from 'swiper/react'
 
 import 'swiper/css'
 import data from '@/lib/slider.json'
 import { sliderSettings } from '@/lib/common'
 import { AiFillCaretLeft ,AiFillCaretRight} from "react-icons/ai";
+import { AuthContext } from '@/lib/context/AuthProvider'
 
-function CardSlider() {
+function CardSlider({searchQuery}) {
+   
+    console.log(searchQuery)
+    
+    const filteredItems = data.filter(item => {
+        const searchQueryLowerCase = searchQuery.toLowerCase();
+        return (
+            item.name.toLowerCase().includes(searchQueryLowerCase)
+        )
+    })
   return (
 
     <div className="paddings innerWidth r-container no-scrollbar">
         <Swiper {...sliderSettings}>
             <SliderButonns/>
             {
-                data.map((card,i)=>(
+                filteredItems.map((card,i)=>(
                     <SwiperSlide key={i}>
                       <div className="flexColStart content-center r-card bg-[#A9411D] w-[11rem] h-[12rem] ">
                         <img src={card.image} alt="home" className='absolute top-[-15%] right-[14px] w-[70%] h-[70%] z-20 md:right-[37%]'/>
