@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { SlOptionsVertical } from "react-icons/sl";
-import { IoIosArrowRoundBack } from 'react-icons/io'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import CartCard from './CartCard';
 import { AuthContext } from '@/lib/context/AuthProvider';
 import Header from './Header';
@@ -25,7 +23,7 @@ const navigate = useNavigate()
     <div className="cards mt-3 overflow-auto">
       <CartCard/>
     </div>
-    <button onClick={setCartItems([])}>clear</button>
+    <button onClick={()=>{setCartItems([])}}>clear</button>
     </section>
     
   )

@@ -24,7 +24,7 @@ const Nav = ({cartItems}) => {
         <div className='absolute flex flex-1 bottom-9 gap-7 right-5 '>
           
           <Link to={'/mycart'}><FaShoppingBag color='white' size={35} className='hover:brightness-75 relative' />
-          <div className={`bg-white h-[15px] w-[15px] rounded-[50%] absolute top-0 right-[55px] ${cartItems ? 'bg-white' : 'hidden'}`}>{cartItems.length}</div>
+          <div className={`bg-white h-[15px] w-[15px] rounded-[50%] absolute top-0 right-[55px] ${cartItems ? 'bg-white' : 'hidden'} flex items-center justify-center font-bold text-yellow-700`}>{cartItems.length}</div>
           </Link>
 
           <Link to={'/profile'}><FaUser color='white' size={35} className='hover:brightness-75' /></Link>
