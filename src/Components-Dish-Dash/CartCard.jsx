@@ -6,14 +6,12 @@ import { Link } from 'react-router-dom';
 
 
 const CartCard = ({cartItems}) => {
-    const balanceZero = () => {
-        if(cartItems.length === 0 ) return <span>0</span>
-    }
+    const balanceZero = cartItems.length === 0
   return (
     <section className='h-[100%] no-scrollbar'>
         {
-            cartItems.length === 0 ? <img src="/Empty Cart.jpg" alt="Empty Cart" /> : cartItems.map((item)=>(
-                <div className='w-[360px] flex gap-4 space h-[67%] overflow-x-scroll no-scrollbar'>
+            cartItems.length === 0 ? <div className='w-full h-full'><img src="/Empty Cart.jpg" alt="Empty Cart" className=' object-contain w-full h-full ' /></div> : cartItems.map((item)=>(
+                <div className='w-[360px] flex gap-4 mt-3 overflow-x-scroll no-scrollbar'>
             <div className='w-[120px] h-[120px] rounded-[20px] bg-[#A9411D]'>
                 <img src={item.image} alt="image" />
             </div>
@@ -26,7 +24,7 @@ const CartCard = ({cartItems}) => {
                 </span>
                 </div>
               
-                <span className='text-[13px] text-[#968B7B]'>{item.detail}</span>
+                <span className='text-[13px] text-[#968B7B]'>{item.name}</span>
                 <div>
                     $<span className='text-[#968B7B]'>{item.price}</span>
                     
@@ -42,32 +40,7 @@ const CartCard = ({cartItems}) => {
             ))
         }
        
-       
-
-        <div className='space-y-1 sb-tt'>
-            <div className='flex justify-between content-center items-center'>
-                <span className='font-semibold text-[13px] text-[#968B7B]'>Sub total</span>
-                <span className='text-[#A9411D] font-semibold text-[15px]'>{balanceZero}</span>
-            </div>
-            <div className='flex justify-between'>
-                <span className='font-semibold text-[13px] text-[#968B7B]'>Sub total</span>
-                <span className='text-[#A9411D] font-semibold text-[15px]'>$70</span>
-            </div>
-            <div className='flex justify-between'>
-                <span className='font-semibold text-[13px] text-[#968B7B]'>Sub total</span>
-                <span className='text-[#A9411D] font-semibold text-[15px]'>$70</span>
-            </div>
-            <div className='flex justify-between tt-price'>
-                <span className='font-bold text-[15px] text-[black]'> Total Price</span>
-                <span className='text-[black] font-bold text-[16px]'>$70</span>
-            </div>
-            <div className=''>
-                <Link to={'/checkout'}> <Button variant="outline" className='checkout-btn w-[350px] h-[60px] hover:brightness-150 hover:text-white text-white rounded-[30px] '>Checkout</Button></Link>
-           
-            </div>
-
-            
-        </div>
+    
     </section>
   )
 }

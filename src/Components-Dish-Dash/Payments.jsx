@@ -1,16 +1,36 @@
-import React, { useContext, useEffect } from 'react'
-import { IoIosArrowRoundBack } from 'react-icons/io'
-import { SlOptionsVertical } from 'react-icons/sl'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { TbCash } from "react-icons/tb";
 import { BsFillCreditCardFill } from "react-icons/bs";
 import { Button } from '@/components/ui/button';
 import { AuthContext } from '@/lib/context/AuthProvider';
 import Header from './Header';
+import api from '@/lib/api';
+
 
 const Payments = () => {
   const {isAuthicanted} = useContext(AuthContext)
+ const route='/api/daraja/'
+ const confirmRoute ='api/daraja/stk-push/'
+  
+  const value ={
+    "phone":"0726241070",
+    "amount":1
+  }
+  
 const navigate = useNavigate()
+const onPayment = async () => {
+ try {
+  const response =await api.post(route,value)
+  console.log(response)
+  if(response.status === 200){
+    const responseData = await api.post(confirmRoute)
+    console.log(responseData.data)
+  }
+ } catch (error) {
+  alert(error)
+ }
+}
 
   useEffect(() => {
     if (!isAuthicanted) {
@@ -54,7 +74,8 @@ const navigate = useNavigate()
             
     </div>
     <div className='mt-4'>
-                <Link to={'/checkout'}> <Button variant="outline" className='checkout-btn w-[300px] h-[60px] hover:brightness-150 hover:text-white text-white rounded-[30px] '>Payment</Button></Link>
+    <Button variant="outline" className='checkout-btn w-[300px] h-[60px] hover:brightness-150 hover:text-white text-white rounded-[30px]' onClick={()=>onPayment()} >Payment</Button>
+                <Link to={'/checkout'}></Link>
            
             </div>
     </section>
