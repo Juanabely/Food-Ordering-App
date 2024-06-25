@@ -9,11 +9,12 @@ import { jwtDecode } from 'jwt-decode';
 
 const Login = () => {
 const [values, setValues] = useState()
-const [loading,setLoading]= useState(false)
+// const [loading,setLoading]= useState(false)
 const route='/api/token/'
 const navigate = useNavigate()
-const {isAuthicanted,setIsAuthicanted,setActiveUser} = useContext(AuthContext)
+const {isAuthicanted,setIsAuthicanted,setActiveUser,loading,setLoading} = useContext(AuthContext)
 console.log(isAuthicanted)
+const [beforeLoading, setBeforeLoading] = useState(false)
 
 
 // useEffect(() => {
@@ -21,9 +22,9 @@ console.log(isAuthicanted)
 //   console.log(values)
 // }, [values])
 
-  const onSubmit= async(values) => {
-      console.log(values)  
-      setLoading(true)
+  const onSubmit= async(values) => { 
+   setBeforeLoading(true)
+      
       try {
          const res =  await api.post (route,values)
          localStorage.setItem(ACCESS_TOKEN,res.data.access)
@@ -35,8 +36,8 @@ console.log(isAuthicanted)
       } catch (error) {
          alert(error)
       }finally{
-         setLoading(false)
-         
+        
+         setBeforeLoading(false)
       }
    }
    const getValues= (values)=> {
@@ -100,7 +101,7 @@ console.log(isAuthicanted)
          <LoginForm
          type={'sign-in'}
          name={'Sign In'}
-         loading={loading}
+         loading={beforeLoading}
          setValues={getValues}
          />
          

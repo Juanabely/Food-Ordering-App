@@ -3,7 +3,7 @@ import { IoIosArrowRoundBack } from 'react-icons/io'
 import { SlOptionsVertical } from 'react-icons/sl'
 import { Link } from 'react-router-dom'
 
-function Header({text,component}) {
+function Header({text,component,jsx}) {
     const backIcon= <IoIosArrowRoundBack size={30}/>
   return (
     <div className='head'>
@@ -19,7 +19,10 @@ function Header({text,component}) {
   {text}
 </span>
 
-<div className="circle h-[40px] flex items-center justify-center w-[40px] rounded-full bg-[#FFF8EF]"><SlOptionsVertical size={20} /></div>
+<div className="circle h-[40px] flex items-center justify-center w-[40px] rounded-full bg-[#FFF8EF]">{
+  component === 'myCart' ? jsx : <SlOptionsVertical size={20} />
+  
+  }</div>
 
 </div>
     </div>

@@ -1,11 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 import { LuSettings2 } from "react-icons/lu";
 import CardSlider from './CardSlider';
 import Nav from './Nav';
 import { AuthContext } from '@/lib/context/AuthProvider';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import DropDown from './DropDown';
 const { Search } = Input;
 const suffix = (
   <AudioOutlined
@@ -18,23 +21,25 @@ const suffix = (
 const onSearch = (value, _e, info) => console.log(info?.source, value);
 
 const Home = () => {
-
-const {isAuthicanted,activeUser,searchQuery,setSearchQuery,setCartItems,cartItems} = useContext(AuthContext)
+const {isAuthicanted,activeUser,searchQuery,setSearchQuery,setCartItems,cartItems,data,setData,addCartItem,setLoading,loading} = useContext(AuthContext)
 console.log(isAuthicanted)
-const navigate = useNavigate()
 console.log(activeUser)
 const email = activeUser.email
-
-  // useEffect(() => {
-  //   if (!isAuthicanted) {
-  //     navigate('/login');
-  //   }
-  // }, [])
-  
   return (
     isAuthicanted ? <>
     <section className='home justify-center items-center text-center h-[100vh]   max-w-[360px]   overflow-hidden min-h-[50px]   mx-auto  no-scrollbar  sm:max-w-[600px]  md:max-w-[720px] lg:max-w-[1024px] '>
-      
+    <ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
       <div className="header flex gap-4 mt-2 items-center w-full justify-between h-[10%]">
         <div className='bg-slate-100 relative text-center rounded-full w-[50px] h-[50px]'>
           <span className='font-bold text-4xl  absolute left-3 top-1'>{
@@ -85,7 +90,16 @@ const email = activeUser.email
                 />    
                   </Space></div>
 
-                  <div className='setting w-[50px] h-[50px] rounded-full bg-black flex items-center justify-end'><LuSettings2 size={25} color='white' className='hover:col-blue flex-1 items-center justify-center' /></div>
+                  <div className='setting w-[50px] h-[50px] rounded-full bg-black flex items-center justify-center'>
+                    <DropDown
+                    trigger={<LuSettings2 size={25} color='white'/>}
+                    label={'Sort By'}
+                    item1={'Sort by Letter'}
+                    item2={'Sort by Price'}
+                    item3={'Sort by Most ordered'}
+                    />
+
+                  </div>
             </div>
        </div>
        <div className="overflow-x-scroll no-scrollbar h-[65%]">
@@ -99,6 +113,12 @@ const email = activeUser.email
           <CardSlider 
           searchQuery={searchQuery}
           setCartItems={setCartItems}
+          cartItems={cartItems}
+          data={data}
+          setData={setData}
+          addCartItem={addCartItem}
+          setLoading={setLoading}
+          loading={loading}
           />
         </div>
     </div>
@@ -112,6 +132,12 @@ const email = activeUser.email
           <CardSlider
           searchQuery={searchQuery}
           setCartItems={setCartItems}
+          cartItems={cartItems}
+          data={data}
+          setData={setData}
+          addCartItem={addCartItem}
+          setLoading={setLoading}
+          loading={loading}
           />
         </div>
       </div>

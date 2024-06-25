@@ -1,49 +1,74 @@
-import React, { useContext } from 'react'
 import {Swiper,SwiperSlide, useSwiper} from 'swiper/react'
-
 import 'swiper/css'
-import data from '@/lib/slider.json'
 import { sliderSettings } from '@/lib/common'
 import { AiFillCaretLeft ,AiFillCaretRight} from "react-icons/ai";
-import { AuthContext } from '@/lib/context/AuthProvider'
+import { useEffect, useState } from 'react';
+import api from '@/lib/api';
+import { ClipLoader } from 'react-spinners';
 
-function CardSlider({searchQuery,setCartItems}) {
-   
+
+
+function CardSlider({searchQuery,cartItems,data,setData,addCartItem,setLoading ,loading}) {
+    
+  // const [imagesLoaded, setLoadedImages] = useState(0)
+  const route = 'api/user/foodlist/'
     console.log(searchQuery)
     
+    useEffect(() => {
+      try {
+       
+        const getData = async () => {
+          const response =  await api.get(route)
+       setData(response.data)
+        }
+        getData()
+        
+      } catch (error) {
+        
+      }finally{
+      }
+    
+     
+    }, [])
+    
+
+
     const filteredItems = data.filter(item => {
         const searchQueryLowerCase = searchQuery.toLowerCase();
         return (
-            item.name.toLowerCase().includes(searchQueryLowerCase)
+            item.food_name.toLowerCase().includes(searchQueryLowerCase)
         )
     })
-    const addCartItem = (card) => {
-        setCartItems(prev=>[...prev,card]);
-    }
+    
+   
+     
   return (
 
-    <div className="paddings innerWidth r-container no-scrollbar">
+    <div className="paddings innerWidth r-container no-scrollbar ">
         <Swiper {...sliderSettings}>
             <SliderButonns/>
             {
-                filteredItems.map((card)=>(
-                    <SwiperSlide key={card.id}>
-                      <div className="flexColStart content-center r-card bg-[#A9411D] w-[11rem] h-[12rem] ">
-                        <img src={card.image} alt="home" className='absolute top-[-15%] right-[14px] w-[70%] h-[70%] z-20 md:right-[37%]'/>
+                filteredItems.map((card,index)=>(
+                  loading ? <p>Loading.....</p> :
+                    <SwiperSlide key={card.id} onClick={() => addCartItem(card)} className={
+                      cartItems.some((item) => item.id === card.id)?'brightness-50':''
+                    } >
+                      <div className="flexColStart content-center r-card bg-[#A9411D] w-[11rem] h-[12rem]">
+                        <img src={card.image_url} alt="home" className='absolute top-0 right-[14px] w-[100px] h-[100px] rounded-[50%] z-20 md:right-[37%]  object-contain'  />
                         <br />
                         <br />
                         <br />
                         <br />
                         
-                        <span className="text-white  ">{card.name}</span>
+                        <span className="text-white  ">{card.food_name}</span>
                        
                         <span className=' r-price'>
                             <span style={{
                                 color:'orange'
-                            }}> <br /> $</span>
+                            }}> <br />Ksh </span>
                             <span className='text-[15px] text-white font-semibold'>{card.price}</span>
                         </span>
-                        <img src="/Buy.svg" alt="Buy"  className='absolute w-[50px] h-[50px] right-[15px] md:right-[36%]' onClick={() => addCartItem(card)}/>
+                        <img src="/Buy.svg" alt="Buy"  className='absolute w-[50px] h-[50px] right-[15px] md:right-[36%]' />
                         </div>  
                     </SwiperSlide>
                 ))

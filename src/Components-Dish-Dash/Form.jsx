@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import '../LoginForm.css'
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 const LoginForm = ({styles,type,name,setValues,loading}) => {
@@ -11,6 +12,7 @@ const LoginForm = ({styles,type,name,setValues,loading}) => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [location, setLocation] = useState('');
+
 
  
   const values={"username":username,"password":password}
@@ -112,7 +114,9 @@ const LoginForm = ({styles,type,name,setValues,loading}) => {
                         sendValues();
                         
                         console.log(values)
-                      }}>{loading ? <>loading....</> : <>Submit</>}</button>
+                      }}>{loading ? <><ClipLoader
+					  loading={loading}
+					  /></> : <>Submit</>}</button>
                             				<p className="mb-0 mt-4 text-center"><a href={type === 'sign-in'? '/register' : '/login'}className="link">
 												{
 													type === 'sign-in' ? <span>

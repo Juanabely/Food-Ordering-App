@@ -1,5 +1,9 @@
 
-import React, { createContext,  useState } from 'react'
+import LoadingScreen from '@/Components-Dish-Dash/LoadingScreen';
+import React, { createContext,  useEffect,  useState } from 'react'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const AuthContext = createContext();
 
@@ -10,10 +14,38 @@ const [isAuthicanted, setIsAuthicanted] = useState(false);
 const [searchQuery,setSearchQuery]=useState('')
 const [activeUser,setActiveUser] = useState({})
 const [cartItems,setCartItems] = useState([])
+const [data,setData] =useState([])
+const [totalPrice, setTotalPrice] = useState(cartItems.length === 0 ? 0 :cartItems.reduce((accumulator,currentItem)=>accumulator + currentItem.price,0))
+const [loading,setLoading]=useState(false)
 
-console.log(isAuthicanted)
-console.log(searchQuery)
-console.log(cartItems)
+console.log(data)
+
+const addCartItem = (card) => {
+  const notify = () => toast('⚠️ Food already in Cart!', {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      color: 'black'
+  });
+
+  const isAlreadyInCart = cartItems.some((item) => item.id === card.id);
+
+  if (isAlreadyInCart) {
+      notify();
+  } else {
+      setCartItems((prev) => {
+          const updatedCart = [...prev, card];
+          setTotalPrice(updatedCart.reduce((accumulator, currentItem) => accumulator + currentItem.price, 0));
+          return updatedCart;
+      });
+  }
+};
+
 
 return (
     <AuthContext.Provider value={
@@ -26,9 +58,18 @@ return (
             searchQuery,
             cartItems,
             setCartItems,
+            data,
+            setData,
+            addCartItem,
+            totalPrice,
+            setTotalPrice,
+            loading,
+            setLoading
         }
     }>
-       {children}
+       {loading ? <LoadingScreen
+       loading={loading}
+       /> : children}
        
        
     </AuthContext.Provider>
