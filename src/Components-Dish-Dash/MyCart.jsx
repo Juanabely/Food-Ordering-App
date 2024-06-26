@@ -57,7 +57,7 @@ const grandTotal = totalPrice + deliveryFee
      // Mark loading as complete
   }, [isAuthicanted, navigate]);
   return (
-    <section className='homejustify-center items-center text-center h-[100vh]   max-w-[360px]   overflow-x-scroll min-h-[50px]   mx-auto  no-scrollbar  sm:max-w-[600px]  md:max-w-[720px] lg:max-w-[1024px]'>
+    <section className='homejustify-center items-center text-center h-[100vh]   max-w-[360px]   overflow-x-scroll min-h-[50px]   mx-auto  no-scrollbar  sm:max-w-[600px]  md:max-w-[720px] lg:max-w-[1024px] my-auto px-1'>
       <Header
       text={'My cart'}
       jsx = {<DropdownMenu>
@@ -97,11 +97,11 @@ const grandTotal = totalPrice + deliveryFee
                 <span className='font-semibold text-[13px] text-[#968B7B]'>Delivery Fee</span>
                 <span className='text-[#A9411D] font-semibold text-[15px]'>Ksh {cartZero?0:deliveryFee}</span>
             </div>
-            <div className='flex justify-between pt-3 text-start'>
+            <div className='flex justify-between pt-10 text-start'>
                 <span className='font-bold text-[15px] text-[black]'> Total Price</span>
                 <span className='text-[black] font-bold text-[16px]'>Ksh {cartZero?0:grandTotal}</span>
             </div>
-            <div className=''>
+            <div className='flex justify-center pt-3 '>
                 <Link to={cartZero ? '/' : '/checkout'}> <Button variant="outline"  className='checkout-btn w-[350px] h-[60px] hover:brightness-150 hover:text-white text-white rounded-[30px] '>{cartZero ?'Add items to cart':'Checkout' }</Button></Link>
            
             </div>

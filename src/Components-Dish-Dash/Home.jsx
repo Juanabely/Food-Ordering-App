@@ -29,7 +29,7 @@ console.log(data.length)
 const email = activeUser.email
   return (
     isAuthicanted ? <>
-    <section className='home justify-center items-center text-center h-[100vh]   max-w-[360px]   overflow-hidden min-h-[50px]   mx-auto  no-scrollbar  sm:max-w-[600px]  md:max-w-[720px] lg:max-w-[1024px] '>
+    <section className='home justify-center items-center text-center h-[100vh]   max-w-[360px]   overflow-hidden min-h-[50px]   mx-auto  no-scrollbar  sm:max-w-[600px]  md:max-w-[720px] lg:max-w-[1024px] my-auto px-1'>
     <ToastContainer
 position="top-center"
 autoClose={5000}
@@ -50,9 +50,9 @@ theme="light"
           </div>
           <div>
           <p className='font-sans text-[20px] font-semibold'>Hello,{activeUser.username }</p>
-          <p className='font-normal text-[9px]'>Kenya,{activeUser.location}</p>
+          <p className='font-normal text-[10px]'>Kenya,{activeUser.location}</p>
          </div>
-         <div className='relative ml-[7rem]'>
+         <div className='relative ml-[1rem]'>
         <img src="/Notification.svg" alt="Notification" className='h-[50px] w-[50px]'/>
         <img src="/Bell.svg" alt="Bell"  className='absolute top-3 left-3'/>
       </div>
@@ -61,13 +61,13 @@ theme="light"
        <div className="content mt-2 flex-col flex justify-center items-center h-[15%]">
         <div className="image-content relative ">
 
-        <img src="/Rectangle.png" alt="rectangle" className='max-[330px]:w-[17rem] max-[375px]:ml-3 max-[361px]:w-[21rem] w-[100%] md:h-[140px] lg:h-[170px] lg:w-[600px] ' />
+        <img src="/Rectangle.png" alt="rectangle" className='max-[330px]:w-[17rem] max-[375px]:ml-0 max-[361px]:w-[21rem] w-[100%] md:h-[140px] lg:h-[170px] lg:w-[600px] mx-auto mr-9 ' />
 
         <p className='absolute top-1 left-4 text-white max-w-40 font-semibold md:text-xl md:max-w-[250px]' >Dish and Dash <br /> <span className='text-[90%]'>"Delicious Delivered in a Dash!”</span> 😊</p> 
 
-        <img src="Leave.svg" alt="Leave" className='absolute top-[-60%] left-[50%] right-0 w-[80%] md:w-[50%] ' />
+        <img src="Leave.svg" alt="Leave" className='absolute top-[-60%] left-[50%] right-0 w-[75%] md:w-[50%] ' />
 
-        <img src="image41.svg" alt="Leave" className='absolute top-[-0px] right-[20%] z-10 w-[30%] md:w-[20%] md:right-[10%]' />
+        <img src="image41.svg" alt="Leave" className='absolute top-[-0px] right-[20%] z-10 w-[28%] md:w-[20%] md:right-[10%]' />
 
         <img src="image42.svg" alt="Leave" className='absolute top-[19%] right-[0%] z-0 w-[28%] md:w-[20%]'/>
        
@@ -94,7 +94,7 @@ theme="light"
                 />    
                   </Space></div>
 
-                  <div className='setting w-[50px] h-[50px] rounded-full bg-black flex items-center justify-center'>
+                  <div className='setting w-[50px] h-[50px] rounded-full bg-black flex items-center justify-center z-50'>
                     <DropDown
                     trigger={<LuSettings2 size={26} color='white'/>}
                     label={'Search Settings'}

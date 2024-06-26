@@ -20,7 +20,7 @@ const navigate = useNavigate()
      // Mark loading as complete
   }, [isAuthicanted, navigate]);
   return (
-    <section className='home justify-center items-center text-center  h-100vh  max-w-[360px]  mx-auto min-[700px]:max-w-[600px] min-[1200px]:max-w-[900px]'>
+    <section className='home justify-center items-center text-center  h-100vh  max-w-[360px]  mx-auto min-[700px]:max-w-[600px] min-[1200px]:max-w-[900px] px-1'>
       <ToastContainer
 position="top-center"
 autoClose={5000}
