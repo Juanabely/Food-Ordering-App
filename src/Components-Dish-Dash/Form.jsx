@@ -27,7 +27,7 @@ const LoginForm = ({styles,type,name,setValues,loading}) => {
     setValues(type === 'sign-up' ? valuesSignOut : values)
   }
   return (
-    <div className="section rounded-lg">
+    <div className="section rounded-lg my-auto">
 		<div className="container">
 			<div className="row full-height justify-content-center">
 				<div className="col-12 text-center align-self-center py-5">

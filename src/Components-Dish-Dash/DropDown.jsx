@@ -8,7 +8,7 @@ import {
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
 
-const DropDown = ({trigger,label,onClick,item1,item2,item3,item4}) => {
+const DropDown = ({trigger,label,dropDowns}) => {
 
   return (
     <DropdownMenu>
@@ -16,10 +16,7 @@ const DropDown = ({trigger,label,onClick,item1,item2,item3,item4}) => {
         <DropdownMenuContent>
           <DropdownMenuLabel>{label}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={()=>onClick}>{item1}</DropdownMenuItem>
-          <DropdownMenuItem>{item2}</DropdownMenuItem>
-          <DropdownMenuItem>{item3}</DropdownMenuItem>
-          <DropdownMenuItem>{item4}</DropdownMenuItem>
+          {dropDowns}
         </DropdownMenuContent>
       </DropdownMenu>
   )

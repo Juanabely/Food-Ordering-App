@@ -12,15 +12,12 @@ const [values, setValues] = useState()
 // const [loading,setLoading]= useState(false)
 const route='/api/token/'
 const navigate = useNavigate()
-const {isAuthicanted,setIsAuthicanted,setActiveUser,loading,setLoading} = useContext(AuthContext)
+const {isAuthicanted,setIsAuthicanted,setActiveUser,loading,setLoading,data} = useContext(AuthContext)
 console.log(isAuthicanted)
 const [beforeLoading, setBeforeLoading] = useState(false)
 
 
-// useEffect(() => {
-//   onSubmit()
-//   console.log(values)
-// }, [values])
+
 
   const onSubmit= async(values) => { 
    setBeforeLoading(true)

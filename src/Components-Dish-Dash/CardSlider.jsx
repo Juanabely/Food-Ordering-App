@@ -5,35 +5,42 @@ import { AiFillCaretLeft ,AiFillCaretRight} from "react-icons/ai";
 import { useEffect, useState } from 'react';
 import api from '@/lib/api';
 import { ClipLoader } from 'react-spinners';
+import LoadingScreen from './LoadingScreen';
 
 
 
 function CardSlider({searchQuery,cartItems,data,setData,addCartItem,setLoading ,loading}) {
     
-  // const [imagesLoaded, setLoadedImages] = useState(0)
+  // const [imagesLoaded, setLoadedImages] = useState(false)
   const route = 'api/user/foodlist/'
     console.log(searchQuery)
     
     useEffect(() => {
       try {
-       
+       setLoading(true)
         const getData = async () => {
+          setLoading(true)
           const response =  await api.get(route)
        setData(response.data)
+       setTimeout(() => {
+        setLoading(false)
+       }, 2000);
         }
         getData()
         
       } catch (error) {
         
       }finally{
+        console.log(data)
       }
-    
+    setLoading(false)
      
     }, [])
     
 
 
     const filteredItems = data.filter(item => {
+      console.log(item.length)
         const searchQueryLowerCase = searchQuery.toLowerCase();
         return (
             item.food_name.toLowerCase().includes(searchQueryLowerCase)
@@ -54,7 +61,7 @@ function CardSlider({searchQuery,cartItems,data,setData,addCartItem,setLoading ,
                       cartItems.some((item) => item.id === card.id)?'brightness-50':''
                     } >
                       <div className="flexColStart content-center r-card bg-[#A9411D] w-[11rem] h-[12rem]">
-                        <img src={card.image_url} alt="home" className='absolute top-0 right-[14px] w-[100px] h-[100px] rounded-[50%] z-20 md:right-[37%]  object-contain'  />
+                        <img src={card.image_url} alt="home" className='absolute top-0 right-[14px] w-[100px] h-[100px] rounded-[50%] z-20 md:right-[37%]  object-contain' onLoad={setLoading(false)}  />
                         <br />
                         <br />
                         <br />
@@ -68,7 +75,7 @@ function CardSlider({searchQuery,cartItems,data,setData,addCartItem,setLoading ,
                             }}> <br />Ksh </span>
                             <span className='text-[15px] text-white font-semibold'>{card.price}</span>
                         </span>
-                        <img src="/Buy.svg" alt="Buy"  className='absolute w-[50px] h-[50px] right-[15px] md:right-[36%]' />
+                        <img src="/Buy.svg" alt="Buy"  className='absolute w-[50px] h-[50px] right-[15px] md:right-[36%]' onLoad={setLoading(false)}  />
                         </div>  
                     </SwiperSlide>
                 ))
@@ -89,7 +96,7 @@ const SliderButonns=()=>{
         swiper.slidePrev()
     }
     return(
-        <div className="flex-1 space-x-1 md:mt-10">
+        <div className="flex-1 space-x-1 md:mt-10 sm:mt-7">
             <button onClick={handlePrev} className='bg-[#A9411D] rounded-[20px] w-[20px] h-[20px] flex-1  item-center align-middle '><AiFillCaretLeft size={21} color='white'/></button>
             <button onClick={handleNext}  className='bg-[#A9411D] rounded-[20px] w-[20px] h-[20px] flex-1  item-center align-middle '><AiFillCaretRight size={21} color='white' /></button>
         </div>

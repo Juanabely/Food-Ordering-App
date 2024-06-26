@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 import { LuSettings2 } from "react-icons/lu";
@@ -9,6 +9,7 @@ import { Link, Navigate} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DropDown from './DropDown';
+import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
 const { Search } = Input;
 const suffix = (
   <AudioOutlined
@@ -23,7 +24,8 @@ const onSearch = (value, _e, info) => console.log(info?.source, value);
 const Home = () => {
 const {isAuthicanted,activeUser,searchQuery,setSearchQuery,setCartItems,cartItems,data,setData,addCartItem,setLoading,loading} = useContext(AuthContext)
 console.log(isAuthicanted)
-console.log(activeUser)
+console.log(data.length)
+
 const email = activeUser.email
   return (
     isAuthicanted ? <>
@@ -40,7 +42,7 @@ draggable
 pauseOnHover
 theme="light"
 />
-      <div className="header flex gap-4 mt-2 items-center w-full justify-between h-[10%]">
+      <div className="header flex gap-4 mt-2 items-center w-full justify-between h-[6%]">
         <div className='bg-slate-100 relative text-center rounded-full w-[50px] h-[50px]'>
           <span className='font-bold text-4xl  absolute left-3 top-1'>{
             email.charAt(0).toUpperCase() 
@@ -56,7 +58,7 @@ theme="light"
       </div>
       </div>
        
-       <div className="content mt-2 flex-col flex justify-center items-center h-[35%]">
+       <div className="content mt-2 flex-col flex justify-center items-center h-[15%]">
         <div className="image-content relative ">
 
         <img src="/Rectangle.png" alt="rectangle" className='max-[330px]:w-[17rem] max-[375px]:ml-3 max-[361px]:w-[21rem] w-[100%] md:h-[140px] lg:h-[170px] lg:w-[600px] ' />
@@ -70,7 +72,9 @@ theme="light"
         <img src="image42.svg" alt="Leave" className='absolute top-[19%] right-[0%] z-0 w-[28%] md:w-[20%]'/>
        
         </div>
-            <div className="search mt-2 flex justify-between md:px-10  items-center w-full ">
+            
+       </div>
+       <div className="search mt-2 flex justify-between md:px-10  items-center w-full  h-[10%]">
                   <div className=''>
                     <Space direction="vertical ">
                   <Search
@@ -92,17 +96,21 @@ theme="light"
 
                   <div className='setting w-[50px] h-[50px] rounded-full bg-black flex items-center justify-center'>
                     <DropDown
-                    trigger={<LuSettings2 size={25} color='white'/>}
-                    label={'Sort By'}
-                    item1={'Sort by Letter'}
-                    item2={'Sort by Price'}
-                    item3={'Sort by Most ordered'}
+                    trigger={<LuSettings2 size={26} color='white'/>}
+                    label={'Search Settings'}
+                    dropDowns={
+                      <>
+                      <DropdownMenuItem>
+                        Sort by Name
+                      </DropdownMenuItem>
+                      </>
+                    }
+                    
                     />
 
                   </div>
             </div>
-       </div>
-       <div className="overflow-x-scroll no-scrollbar h-[65%]">
+       <div className="overflow-x-scroll no-scrollbar h-[100%]">
 
       <div className="cards-pop-container no-scrollbar">
         <div className="words flex justify-between items-center">
@@ -146,6 +154,7 @@ theme="light"
       
 <Nav
 cartItems={cartItems}
+setLoading={setLoading}
 />
       
     </section>

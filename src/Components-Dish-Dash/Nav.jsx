@@ -5,12 +5,13 @@ import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 import { RiHomeSmile2Fill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 
-const Nav = ({cartItems}) => {
+const Nav = ({cartItems,setLoading}) => {
   const ref = useRef( )
+  
   return (
     <section className=' nav flex items-center justify-center content-center max-w-[350px] mx-auto '>
-      <div className='absolute z-50 justify-center items-center max-w-[375px] bottom-[-33px]'>
-        <img src="/NavVector.svg" alt="Vector" className='bottom-0' />
+      <div className='fixed z-50 justify-center items-center max-w-[375px] bottom-[-33px]'>
+        <img src="/NavVector.svg" alt="Vector" className='bottom-0' onLoad={setLoading(false)} />
         <div className='absolute flex flex-1 bottom-9 gap-7 left-5'>
             <RiHomeSmile2Fill  color='white' size={35}className='hover:brightness-75' />
             <Link to={'/reachOut'}><IoChatbubbleEllipsesSharp color='white' size={35} className='hover:brightness-75' /></Link>

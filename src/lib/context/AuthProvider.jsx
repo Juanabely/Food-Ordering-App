@@ -18,7 +18,7 @@ const [data,setData] =useState([])
 const [totalPrice, setTotalPrice] = useState(cartItems.length === 0 ? 0 :cartItems.reduce((accumulator,currentItem)=>accumulator + currentItem.price,0))
 const [loading,setLoading]=useState(false)
 
-console.log(data)
+console.log(data.length)
 
 const addCartItem = (card) => {
   const notify = () => toast('⚠️ Food already in Cart!', {
