@@ -12,7 +12,7 @@ const [values, setValues] = useState()
 // const [loading,setLoading]= useState(false)
 const route='/api/token/'
 const navigate = useNavigate()
-const {isAuthicanted,setIsAuthicanted,setActiveUser,loading,setLoading,data} = useContext(AuthContext)
+const {isAuthicanted,setIsAuthicanted,setActiveUser,loading,setLoading,data,activeUser} = useContext(AuthContext)
 console.log(isAuthicanted)
 const [beforeLoading, setBeforeLoading] = useState(false)
 
@@ -28,7 +28,8 @@ const [beforeLoading, setBeforeLoading] = useState(false)
          console.log(res)
          localStorage.setItem(REFRESH_TOKEN,res.data.refresh)
          auth()
-         navigate('/')
+         console.log(values)
+         values.username === 'Admin' ? navigate('/admin') : navigate('/')
          
       } catch (error) {
          alert(error)
@@ -39,15 +40,10 @@ const [beforeLoading, setBeforeLoading] = useState(false)
    }
    const getValues= (values)=> {
       setValues(values);
-      console.log(values);
+      console.log(activeUser);
      onSubmit(values)
    }
-   useEffect(() => {
-      // auth().catch(()=>setIsAuthicanted(false))   
-      // console.log(isAuthicanted)
-   }, [])
    
-  
    const refreshToken = async () => {
     const refreshToken= localStorage.getItem(REFRESH_TOKEN)
     try {
@@ -80,7 +76,7 @@ const [beforeLoading, setBeforeLoading] = useState(false)
       })
       const tokenExpiration = decoded.exp
       const now = Date.now() / 1000
-  
+      
       if(tokenExpiration < now){
        await refreshToken()
       } else{

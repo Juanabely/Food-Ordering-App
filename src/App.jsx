@@ -9,6 +9,7 @@ import Payments from './Components-Dish-Dash/Payments'
 import  Login  from './Components-Dish-Dash/Login'
 import Register from './Components-Dish-Dash/Register'
 import { AuthProvider } from './lib/context/AuthProvider'
+import AdminDashboard from './Components-Dish-Dash/AdminDashboard'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/myCart' element={<MyCart/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/checkout' element={<Payments/>}/>
+          <Route path='/admin' element={<AdminDashboard/>}/>
         </Routes> 
       
        <Routes>

@@ -5,7 +5,7 @@ import { LuSettings2 } from "react-icons/lu";
 import CardSlider from './CardSlider';
 import Nav from './Nav';
 import { AuthContext } from '@/lib/context/AuthProvider';
-import { Link, Navigate} from 'react-router-dom';
+import { Link, Navigate, useNavigate} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DropDown from './DropDown';
@@ -22,6 +22,8 @@ const suffix = (
 const onSearch = (value, _e, info) => console.log(info?.source, value);
 
 const Home = () => {
+  const navigate = useNavigate()
+ 
 const {isAuthicanted,activeUser,searchQuery,setSearchQuery,setCartItems,cartItems,data,setData,addCartItem,setLoading,loading} = useContext(AuthContext)
 console.log(isAuthicanted)
 console.log(data.length)
@@ -29,7 +31,7 @@ console.log(data.length)
 const email = activeUser.email
   return (
     isAuthicanted ? <>
-    <section className='home justify-center items-center text-center h-[100vh]   max-w-[360px]   overflow-hidden min-h-[50px]   mx-auto  no-scrollbar  sm:max-w-[600px]  md:max-w-[720px] lg:max-w-[1024px] my-auto px-1'>
+    <section className='home justify-center items-center text-center h-[100vh]   max-w-[360px]   overflow-hidden min-h-[50px]   mx-auto  no-scrollbar  sm:max-w-[600px]  md:max-w-[720px] lg:max-w-[1024px] my-auto px-1 light-theme'>
     <ToastContainer
 position="top-center"
 autoClose={5000}

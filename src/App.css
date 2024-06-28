@@ -7,7 +7,7 @@
 }
 body{
   background-color:#EBE5DD ;
-  overflow: hidden;
+ 
  
 }
 /* Hide scrollbar for Chrome, Safari, and Opera */
@@ -85,6 +85,7 @@ cursor: pointer;
     
   }
 } */
+ 
 @media (min-width: 806px) {
   section {
     margin: auto;
