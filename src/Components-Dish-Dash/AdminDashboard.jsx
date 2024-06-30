@@ -47,7 +47,7 @@ function AdminDashboard() {
     localStorage.setItem('theme', currentTheme);
   };
   return (
-    <body className="light-theme dark-theme">
+    <body className="light-theme dark-theme h-[100vh]">
     <header className="dark-theme">
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg navbar-light">
