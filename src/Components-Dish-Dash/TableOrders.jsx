@@ -9,7 +9,7 @@ import {
     TableRow,
   } from "@/components/ui/table"
 import { AuthContext } from "@/lib/context/AuthProvider"
-import { useContext } from "react"
+import { useContext, useState } from "react"
   
   const invoices = [
     {
@@ -56,7 +56,9 @@ import { useContext } from "react"
     },
   ]
   
-  export default function TablesData({tablescaption,tableHead1,tableHead2,tableHead3,tableHead4,data}) {
+  export default function TablesOrders({tablescaption,tableHead1,tableHead2,tableHead3,tableHead4,data,total}) {
+    console.log(data)
+    console.log(total)
     
     return (
       <Table>
@@ -67,22 +69,26 @@ import { useContext } from "react"
             <TableHead>{tableHead1}</TableHead>
             <TableHead>{tableHead2}</TableHead>
             <TableHead className="text-right">{tableHead3}</TableHead>
+            <TableHead className="text-right font-bold">Grand Total</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((item) => (
-            <TableRow key={item.id}>
-              <TableCell className="font-medium">INV{item.id}</TableCell>
+          {data.map((item,index) => (
+            <>
+            <TableRow key={item.id ? item.id : index}>
+              <TableCell className="font-medium">INV{item.id ? item.id : index}</TableCell>
               <TableCell>{item.food_name}</TableCell>
               <TableCell>{'__.__'}</TableCell>
-              <TableCell className="text-right">{item.price}</TableCell>
+              <TableCell className="text-right">{item.food_price}</TableCell>
+            <TableCell className="text-right">{item.total_price ? item.total_price : data.length}</TableCell>
             </TableRow>
+           
+            </>
           ))}
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">{data.length}</TableCell>
+          
           </TableRow>
         </TableFooter>
       </Table>

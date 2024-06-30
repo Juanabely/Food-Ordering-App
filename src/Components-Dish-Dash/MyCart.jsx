@@ -16,13 +16,16 @@ import { SlOptionsVertical } from 'react-icons/sl';
 
 
 const MyCart = () => {
-  const {isAuthicanted,cartItems,setCartItems,totalPrice,setTotalPrice} = useContext(AuthContext)
+  const {isAuthicanted,cartItems,setCartItems,totalPrice,setTotalPrice,setItems} = useContext(AuthContext)
 const navigate = useNavigate()
 const cartZero = cartItems.length === 0
 const [noOfItems, setNoOfItems] = useState(cartItems.map(() => 1)) 
+console.log(noOfItems)
 
 
 console.log(cartItems)
+const orderedItems = cartItems.map((item,index)=>({...item,quantity:noOfItems[index]}))
+console.log(orderedItems)
 
 const decreaseNoOfItems = (i) =>{
   const update = [...noOfItems]
@@ -101,8 +104,8 @@ const grandTotal = totalPrice + deliveryFee
                 <span className='font-bold text-[15px] text-[black]'> Total Price</span>
                 <span className='text-[black] font-bold text-[16px]'>Ksh {cartZero?0:grandTotal}</span>
             </div>
-            <div className='flex justify-center pt-3 '>
-                <Link to={cartZero ? '/' : '/checkout'}> <Button variant="outline"  className='checkout-btn w-[350px] h-[60px] hover:brightness-150 hover:text-white text-white rounded-[30px] '>{cartZero ?'Add items to cart':'Checkout' }</Button></Link>
+            <div className='flex justify-center pt-3 ' onClick={()=>{setItems(orderedItems)}}>
+                <Link to={cartZero ? '/' : '/checkout'}> <Button variant="outline"  className='checkout-btn w-[350px] h-[60px] hover:brightness-150 hover:text-white text-white rounded-[30px]' >{cartZero ?'Add items to cart':'Checkout' }</Button></Link>
            
             </div>
         </div>

@@ -14,6 +14,8 @@ const [isAuthicanted, setIsAuthicanted] = useState(false);
 const [searchQuery,setSearchQuery]=useState('')
 const [activeUser,setActiveUser] = useState({})
 const [cartItems,setCartItems] = useState([])
+const [items, setItems] = useState([]) 
+console.log(items)
 const [data,setData] =useState([])
 const [totalPrice, setTotalPrice] = useState(cartItems.length === 0 ? 0 :cartItems.reduce((accumulator,currentItem)=>accumulator + currentItem.price,0))
 const [loading,setLoading]=useState(false)
@@ -64,7 +66,9 @@ return (
             totalPrice,
             setTotalPrice,
             loading,
-            setLoading
+            setLoading,
+            items,
+            setItems
         }
     }>
        {loading ? <LoadingScreen

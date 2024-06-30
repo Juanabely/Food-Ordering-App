@@ -72,7 +72,8 @@ const [beforeLoading, setBeforeLoading] = useState(false)
          "email":decoded.email,
          "username":decoded.username,
          "location":decoded.location,
-         "phone":decoded.phone
+         "phone":decoded.phone,
+         "id":decoded.id
       })
       const tokenExpiration = decoded.exp
       const now = Date.now() / 1000

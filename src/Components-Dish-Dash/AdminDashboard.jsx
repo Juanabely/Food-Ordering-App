@@ -116,21 +116,21 @@ function AdminDashboard() {
                   <span>Orders</span></a>
               </li>
 
-              <li className={`nav-item ${activeMenuItem === 4 ? 'active' : ''}`} onClick={()=>{
+              {/* <li className={`nav-item ${activeMenuItem === 4 ? 'active' : ''}`} onClick={()=>{
                 setDisplay('Deliveries');
                 setActiveMenuItem(4);
               }}>
                 <a  className="d-flex align-items-center nav-link"> <i><RiEBikeFill size={26} className='fa fa-square-o '/></i>
                   <span>Deliveries</span></a>
-              </li>
+              </li> */}
 
-              <li className={`nav-item ${activeMenuItem === 5 ? 'active' : ''}`} onClick={()=>{
+              {/* <li className={`nav-item ${activeMenuItem === 5 ? 'active' : ''}`} onClick={()=>{
                 setDisplay('UserData');
                 setActiveMenuItem(5);
               }}>
                 <a className="d-flex align-items-center nav-link"><i className="fa fa-star" aria-hidden="true"></i>
                   <span>User Data</span></a>
-              </li>
+              </li> */}
 
               <li className={`nav-item ${activeMenuItem === 6 ? 'active' : ''}`} onClick={()=>{
                 setDisplay('Purchases');
@@ -140,13 +140,13 @@ function AdminDashboard() {
                   <span>Purchased</span></a>
               </li>
 
-              <li className={`nav-item ${activeMenuItem === 7 ? 'active' : ''}`} onClick={()=>{
+              {/* <li className={`nav-item ${activeMenuItem === 7 ? 'active' : ''}`} onClick={()=>{
                 setDisplay('Settings');
                 setActiveMenuItem(7);
               }}>
                 <a className="d-flex align-items-center nav-link"><i className="fa fa-cog" aria-hidden="true"></i>
                   <span>Settings</span></a>
-              </li>
+              </li> */}
 
             </ul>
           </div>

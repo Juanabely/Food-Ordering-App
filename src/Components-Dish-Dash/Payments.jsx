@@ -15,21 +15,44 @@ import PaymentLoader from './PaymentLoader';
 const Payments = () => {
 const [paymentLoading, setPaymentLoading] = useState(false)
 
-  const {isAuthicanted,totalPrice,activeUser} = useContext(AuthContext)
+  const {isAuthicanted,totalPrice,activeUser,items} = useContext(AuthContext)
   
  const route='/api/daraja/'
+ const orderApi = '/api/orders/'
  const confirmRoute ='api/daraja/stk-push/'
  const delivery = 100 
  const grandTotal = totalPrice + delivery
  const PhoneNumber = activeUser.phone
- console.log(PhoneNumber)
- console.log(grandTotal)
+console.log(activeUser)
   const value ={
     "phone":`${PhoneNumber}`,
     "amount":grandTotal
   }
-  
+  console.log(items)
 const navigate = useNavigate()
+const simplifiedOrders = items.map(order => ({
+  food_name: order.food_name,
+  quantity: order.quantity,
+  price: order.price 
+}));
+const foodOrders = {simplifiedOrders,grandTotal}
+console.log(foodOrders)
+console.log(simplifiedOrders)
+const handleOrder = async () => {
+  try {
+    const orderData = {
+       user: activeUser.id,
+       food_items:foodOrders,
+      
+    };
+   console.log(orderData)
+    const res = await api.post(orderApi,orderData);
+    // Handle the response from the backend as needed
+  } catch (error) {
+    // Handle any errors (e.g., network issues, server errors)
+  }
+};
+
 const onPayment = async () => {
 setPaymentLoading(true)
 notify()
@@ -125,7 +148,7 @@ theme="light"
             
     </div>
     <div className='mt-4'>
-    <Button variant="outline" className='checkout-btn w-[300px] h-[60px] hover:brightness-150 hover:text-white text-white rounded-[30px]' onClick={()=>onPayment()} >{paymentLoading ? <ClipLoader loading={paymentLoading}/> : 'Submit'}</Button>
+    <Button variant="outline" className='checkout-btn w-[300px] h-[60px] hover:brightness-150 hover:text-white text-white rounded-[30px]' onClick={()=>{onPayment();handleOrder();}} >{paymentLoading ? <ClipLoader loading={paymentLoading}/> : 'Submit'}</Button>
                 <Link to={'/checkout'}></Link>
            
             </div>
